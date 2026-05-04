@@ -13,9 +13,12 @@ def divide(a, b):
         return None
     return a / b
 
+def power(a, b):
+    return a ** b
+
 def calculator():
     print("=== CLI Calculator ===")
-    print("Operations: add, subtract, multiply, divide")
+    print("Operations: add, subtract, multiply, divide, power")
     print("Type 'quit' to exit\n")
 
     while True:
@@ -25,7 +28,7 @@ def calculator():
             print("Goodbye!")
             break
 
-        if operation not in ["add", "subtract", "multiply", "divide"]:
+        if operation not in ["add", "subtract", "multiply", "divide", "power"]:
             print("Invalid operation, try again\n")
             continue
 
@@ -42,5 +45,7 @@ def calculator():
             result = divide(a, b)
             if result is not None:
                 print(f"Result: {result}\n")
+        elif operation == "power":
+            print(f"Result: {power(a, b)}\n")
 
 calculator()
