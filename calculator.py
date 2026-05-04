@@ -17,8 +17,9 @@ def power(a, b):
     return a ** b
 
 def calculator():
+    history = []
     print("=== CLI Calculator ===")
-    print("Operations: add, subtract, multiply, divide, power")
+    print("Operations: add, subtract, multiply, divide, power, history")
     print("Type 'quit' to exit\n")
 
     while True:
@@ -28,24 +29,43 @@ def calculator():
             print("Goodbye!")
             break
 
-        if operation not in ["add", "subtract", "multiply", "divide", "power"]:
+        if operation not in ["add", "subtract", "multiply", "divide", "power", "history"]:
             print("Invalid operation, try again\n")
+            continue
+
+        if operation == "history":
+            if not history:
+                print("No calculations yet\n")
+            else:
+                print("Last calculations:")
+                for entry in history:
+                    print(f"  {entry}")
+                print()
             continue
 
         a = float(input("Enter first number: "))
         b = float(input("Enter second number: "))
 
         if operation == "add":
-            print(f"Result: {add(a, b)}\n")
+            result = add(a, b)
+            print(f"Result: {result}\n")
+            history.append(f"{a} + {b} = {result}")
         elif operation == "subtract":
-            print(f"Result: {subtract(a, b)}\n")
+            result = subtract(a, b)
+            print(f"Result: {result}\n")
+            history.append(f"{a} - {b} = {result}")
         elif operation == "multiply":
-            print(f"Result: {multiply(a, b)}\n")
+            result = multiply(a, b)
+            print(f"Result: {result}\n")
+            history.append(f"{a} * {b} = {result}")
         elif operation == "divide":
             result = divide(a, b)
             if result is not None:
                 print(f"Result: {result}\n")
+                history.append(f"{a} / {b} = {result}")
         elif operation == "power":
-            print(f"Result: {power(a, b)}\n")
+            result = power(a, b)
+            print(f"Result: {result}\n")
+            history.append(f"{a} ** {b} = {result}")
 
 calculator()
